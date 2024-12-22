@@ -1,4 +1,4 @@
-from attention import MultiHeadAttention
+from models.attention import MultiHeadAttention
 
 import torch
 from torch import nn

@@ -1,2 +1,4 @@
 2/medium_articles.csv
 __pycache__
+*.json
+.DS_Store

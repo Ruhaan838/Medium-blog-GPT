@@ -1,7 +1,7 @@
 import torch
 
 class Config:
-    SEQ_LEN = 24196
+    SEQ_LEN = 1000
     BATCH_SIZE = 2
     RESULT_PATH = 'result'
     D_MODEL = 512
@@ -9,7 +9,7 @@ class Config:
     N = 8
     HEAD_SIZE = 8
     WORKERS = 0
-    LR = 1e-5
+    LR = 1e-9
     
     DEVICE = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     

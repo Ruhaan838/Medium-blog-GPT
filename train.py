@@ -1,4 +1,4 @@
-from model import GPT2
+from models import GPT2
 from config import Config
 from dataset import get_dataloder
 
@@ -17,6 +17,9 @@ def get_model(tokenizer):
     model = model.to(Config.DEVICE)
     return model
 
+def validation(model, tokenizer, ):
+    pass
+
 def train(EPOCH):
     
     os.makedirs(Config.RESULT_PATH, exist_ok=True)
@@ -28,7 +31,7 @@ def train(EPOCH):
     
     for epoch in range(EPOCH):
         model.train()
-        for batch in (pbar:=tqdm(train_dataloader, desc=f"Training | Epoch {epoch}/{EPOCH}", bar_format='{l_bar}{bar:10}{r_bar}{bar:-10b}')):
+        for batch in (pbar:=tqdm(train_dataloader, desc=f"Training | Epoch {epoch+1}/{EPOCH}", bar_format='{l_bar}{bar:10}{r_bar}{bar:-10b}')):
             
             inputs = batch['decoder_input'].to(Config.DEVICE)
             labels = batch['label'].to(Config.DEVICE)
@@ -42,6 +45,7 @@ def train(EPOCH):
             loss.backward()
             optimizer.step()
             optimizer.zero_grad()
+        
             
             
 if __name__ == "__main__":
