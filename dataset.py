@@ -62,6 +62,7 @@ class MediumDataset(Dataset):
         
         pad_title = self.seq_len - len(title_encode) - 1
         pad_label = self.seq_len - len(text_encode) - 1
+        
 
         input_tensor = torch.cat((
             self.sos,
@@ -105,7 +106,6 @@ def get_dataloder(seq_len:int, batch_size:int, workers:int=0):
         ids = tokenizer.encode(str(data['train'][i]['Headline']) + " " + str(data['train'][i]['Article Text'])).ids
         max_len = max(max_len, len(ids))
     
-    print(f"\nMax Seq_len need to set {max_len}")
     
     full_dataset = MediumDataset(data, tokenizer, seq_len)
 
@@ -120,10 +120,10 @@ def get_dataloder(seq_len:int, batch_size:int, workers:int=0):
     return train_dataloader, val_dataloader, tokenizer
 
 if __name__ == "__main__": 
-    train_dataloader, val_dataloader, tokenizer = get_dataloder(1000,8)
+    train_dataloader, val_dataloader, tokenizer = get_dataloder(10467,8)
     count = 0
     for batch in train_dataloader:
-        if count % 10 == 0:
+        if count % 30 == 0:
             print(batch['decoder_input'])
             print(batch['label'])
         count += 1

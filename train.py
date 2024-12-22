@@ -5,6 +5,7 @@ from dataset import get_dataloder
 from tqdm import tqdm
 import os
 
+import torch
 from torch import nn
 from torch import optim
 
@@ -17,8 +18,23 @@ def get_model(tokenizer):
     model = model.to(Config.DEVICE)
     return model
 
-def validation(model, tokenizer, ):
-    pass
+def greedy_decoder(model, inputs, tokenizer):
+    sos_token = tokenizer.token_to_id("<|sos|>")
+
+@torch.no_grad()
+def validation(model, val_dataloader, tokenizer, max_len, device):
+    model.eval()
+    count = 0
+    
+    source_text = []
+    excepted = []
+    predict = []
+    
+    for batch in val_dataloader:
+        count += 1
+        inputs = batch["decoder_input"].to(device)
+        
+    
 
 def train(EPOCH):
     

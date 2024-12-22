@@ -1,1 +1,1 @@
-from model import GPT2
+from models.model import GPT2
